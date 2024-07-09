@@ -1,8 +1,8 @@
 resource "aws_lb" "alb_ecs" {
-  name               = "ecs_alb_django"
+  name               = "ecsAlbDjango"
   load_balancer_type = "application"
   security_groups    = [aws_security_group.public_sg_alb.id]
-  subnets            = [module.vpc.public_subnets]
+  subnets            = module.vpc.public_subnets
 }
 
 resource "aws_lb_listener" "http_application" {
@@ -17,7 +17,7 @@ resource "aws_lb_listener" "http_application" {
 }
 
 resource "aws_lb_target_group" "target_ip" {
-  name        = "ecs_alb_django"
+  name        = "ecAlbDjango"
   port        = 8000
   protocol    = "HTTP"
   target_type = "ip"
@@ -25,5 +25,5 @@ resource "aws_lb_target_group" "target_ip" {
 }
 
 output "dns-IP" {
-  value = aws_alb.alb_ecs.dns_name
+  value = aws_lb.alb_ecs.dns_name
 }
