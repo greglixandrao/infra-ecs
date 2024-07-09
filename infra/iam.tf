@@ -9,9 +9,9 @@ resource "aws_iam_role" "iamRole" {
         Sid    = ""
         Principal = {
           Service = [
-			"ec2.amazonaws.com",
-			"ecs-tasks.amazonaws.com"
-			]
+            "ec2.amazonaws.com",
+            "ecs-tasks.amazonaws.com"
+          ]
         }
       },
     ]
@@ -28,11 +28,16 @@ resource "aws_iam_role_policy" "ecs_ecr" {
       {
         Action = [
           "ecr:GetAuthorizationToken",
-		  "ecr:BatchCheckLayerAvailability",
-		  "ecr:GetDownloadUrlForLayer",
-		  "ecr:BatchGetImage",
-		  "logs:CreateLogsStream",
-		  "logs:PutLogEvents"
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:GetRepositoryPolicy",
+          "ecr:DescribeRepositories",
+          "ecr:CompleteLayerUpload",
+		  "ecr:GetLifecyclePolicy",
+		  "ecr:InitiateLayerUpload",
+          "logs:CreateLogsStream",
+          "logs:PutLogEvents"
         ]
         Effect   = "Allow"
         Resource = "*"
