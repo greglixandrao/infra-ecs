@@ -3,3 +3,7 @@ module "production" {
   repository_name = "production"
   iamRole = "production"
 }
+
+output "ip-alb" {
+  value = module.production.dns-IP
+}
