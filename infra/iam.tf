@@ -37,7 +37,6 @@ resource "aws_iam_role_policy" "ecs_ecr" {
           "ecr:CompleteLayerUpload",
           "ecr:GetLifecyclePolicy",
           "ecr:InitiateLayerUpload",
-		  "ecr:CreateRepository",
           "logs:CreateLogsStream",
           "logs:PutLogEvents",
           "ssm:GetParameters",
