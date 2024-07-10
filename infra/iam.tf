@@ -37,7 +37,10 @@ resource "aws_iam_role_policy" "ecs_ecr" {
 		  "ecr:GetLifecyclePolicy",
 		  "ecr:InitiateLayerUpload",
           "logs:CreateLogsStream",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+		  "ssm:GetParameters",
+          "secretsmanager:GetSecretValue",
+          "kms:Decrypt"
         ]
         Effect   = "Allow"
         Resource = "*"
