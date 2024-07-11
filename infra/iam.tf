@@ -34,11 +34,11 @@ resource "aws_iam_role_policy" "ecs_ecr" {
           "ecr:GetRepositoryPolicy",
           "ecr:DescribeRepositories",
           "ecr:CompleteLayerUpload",
-		  "ecr:GetLifecyclePolicy",
-		  "ecr:InitiateLayerUpload",
+          "ecr:GetLifecyclePolicy",
+          "ecr:InitiateLayerUpload",
           "logs:CreateLogsStream",
           "logs:PutLogEvents",
-		  "ssm:GetParameters",
+          "ssm:GetParameters",
           "secretsmanager:GetSecretValue",
           "kms:Decrypt"
         ]

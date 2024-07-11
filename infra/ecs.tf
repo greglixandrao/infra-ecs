@@ -63,7 +63,7 @@ resource "aws_ecs_service" "service_django_api" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.target_ip.arn
-    container_name   = "${var.environment}"
+    container_name   = var.environment
     container_port   = 8000
   }
 

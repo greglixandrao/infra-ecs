@@ -51,27 +51,27 @@ resource "aws_security_group" "vpc_endpoint_service" {
 }
 
 resource "aws_security_group_rule" "ingress_ECR" {
-  type              = "ingress"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
+  type      = "ingress"
+  from_port = 443
+  to_port   = 443
+  protocol  = "tcp"
   # self = true
-  security_group_id = aws_security_group.vpc_endpoint_service.id
-  source_security_group_id = aws_security_group.public_sg_alb.id
+  security_group_id        = aws_security_group.vpc_endpoint_service.id
+#   source_security_group_id = aws_security_group.public_sg_alb.id
   # cidr_blocks = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  # cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = ["0.0.0.0/0"]
   # # prefix_list_ids = [data.aws_prefix_list.ecr_api_endpoint.id, data.aws_prefix_list.ecr_dkr_endpoint.id]
   # security_group_id = aws_security_group.vpc_endpoint_service.id
 }
 
 resource "aws_security_group_rule" "egress_ECR" {
-  type              = "egress"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
+  type      = "egress"
+  from_port = 0
+  to_port   = 0
+  protocol  = "-1"
   # self = true # not necessary if cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.vpc_endpoint_service.id
-  prefix_list_ids   = [data.aws_prefix_list.ecr_dkr.id, data.aws_prefix_list.s3.id]
-#   cidr_blocks       = ["0.0.0.0/0"]
-#   security_group_id = aws_security_group.vpc_endpoint_service.id
+  #   prefix_list_ids   = [data.aws_prefix_list.ecr_dkr.id, data.aws_prefix_list.s3.id]
+  cidr_blocks = ["0.0.0.0/0"]
+  #   security_group_id = aws_security_group.vpc_endpoint_service.id
 }

@@ -1,28 +1,28 @@
 module "production" {
-  source          = "../../infra"
+  source = "../../infra"
 
   aws_account_number = "689513261716"
-  repository_name = "production"
-  iamRole         = "production"
-  environment     = "production"
-  aws_region = "us-west-2"
-  image_tag = "latest"
+  repository_name    = "production"
+  iamRole            = "production"
+  environment        = "production"
+  aws_region         = "us-west-2"
+  image_tag          = "v1"
 }
 
 locals {
 
-depends_on = [aws_ecr_repository.ecr_repository]
-## Substitute below values to match your AWS account, region & profile
+#   depends_on = [aws_ecr_repository.ecr_repository]
+  ## Substitute below values to match your AWS account, region & profile
   aws_account = "689513261716" # AWS account
-  aws_region  = "us-west-2"      # AWS region
-  aws_profile = "default" # AWS profile
+  aws_region  = "us-west-2"    # AWS region
+  aws_profile = "default"      # AWS profile
   environment = "production"
 
   # ECR docker registry URI
-  ecr_reg   = "${local.aws_account}.dkr.ecr.${local.aws_region}.amazonaws.com"
+  ecr_reg = "${local.aws_account}.dkr.ecr.${local.aws_region}.amazonaws.com"
 
   ecr_repo  = "production" # ECR repo name
-  image_tag = "latest"  # image tag
+  image_tag = "v1"     # image tag
 
   dkr_img_src_path = "../../env/${local.environment}/docker-src"
 
