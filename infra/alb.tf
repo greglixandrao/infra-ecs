@@ -17,7 +17,7 @@ resource "aws_lb_listener" "http_application" {
 }
 
 resource "aws_lb_target_group" "target_ip" {
-  name        = "ecAlbDjango"
+  name        = "ecsAlbDjango"
   port        = 8000
   protocol    = "HTTP"
   target_type = "ip"

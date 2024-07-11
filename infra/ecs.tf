@@ -32,7 +32,7 @@ resource "aws_ecs_task_definition" "task_django_api" {
     [
       {
         "name"      = var.environment
-        "image"     = "689513261716.dkr.ecr.us-west-2.amazonaws.com/production:v1"
+        "image"     = "${var.aws_account_number}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.environment}:${var.image_tag}"
         "cpu"       = 256
         "memory"    = 512
         "essential" = true
@@ -63,13 +63,13 @@ resource "aws_ecs_service" "service_django_api" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.target_ip.arn
-    container_name   = var.environment
+    container_name   = "${var.environment}"
     container_port   = 8000
   }
 
   network_configuration {
     subnets         = module.vpc.private_subnets
-    security_groups = [aws_security_group.private_sg.id]
+    security_groups = [aws_security_group.private_sg.id, aws_security_group.vpc_endpoint_service.id]
   }
 
   capacity_provider_strategy {
