@@ -33,14 +33,17 @@ resource "aws_iam_role_policy" "ecs_ecr" {
           "ecr:BatchGetImage",
           "ecr:GetRepositoryPolicy",
           "ecr:DescribeRepositories",
+          "ecr:DescribeImages",
           "ecr:CompleteLayerUpload",
-		  "ecr:GetLifecyclePolicy",
-		  "ecr:InitiateLayerUpload",
+          "ecr:GetLifecyclePolicy",
+          "ecr:InitiateLayerUpload",
+		  "ecr:CreateRepository",
           "logs:CreateLogsStream",
           "logs:PutLogEvents",
-		  "ssm:GetParameters",
+          "ssm:GetParameters",
           "secretsmanager:GetSecretValue",
-          "kms:Decrypt"
+          "kms:Decrypt",
+		  "s3:"
         ]
         Effect   = "Allow"
         Resource = "*"
