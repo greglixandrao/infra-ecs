@@ -41,8 +41,7 @@ resource "aws_iam_role_policy" "ecs_ecr" {
           "logs:PutLogEvents",
           "ssm:GetParameters",
           "secretsmanager:GetSecretValue",
-          "kms:Decrypt",
-		  "s3:"
+          "kms:Decrypt"
         ]
         Effect   = "Allow"
         Resource = "*"

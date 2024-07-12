@@ -70,6 +70,7 @@ resource "aws_ecs_service" "service_django_api" {
   network_configuration {
     subnets         = module.vpc.private_subnets
     security_groups = [aws_security_group.private_sg.id]
+	assign_public_ip = true
   }
 
   capacity_provider_strategy {

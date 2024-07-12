@@ -9,6 +9,6 @@ variable "environment" {
   type = string
 }
 
-variable "region" {
+variable "aws_region" {
   type = string
 }
